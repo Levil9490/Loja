@@ -1,4 +1,4 @@
-package br.com.levilima.loja;
+package org.levilima.loja;
 
 /**
  *
