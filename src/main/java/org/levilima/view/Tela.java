@@ -1,4 +1,4 @@
-package org.levilima.loja;
+package org.levilima.view;
 
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;

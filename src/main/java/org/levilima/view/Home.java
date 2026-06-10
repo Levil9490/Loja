@@ -1,4 +1,4 @@
-package org.levilima.loja;
+package org.levilima.view;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;

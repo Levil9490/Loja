@@ -4,6 +4,8 @@ package org.levilima.loja;
  *
  * @author levi
  */
+import org.levilima.control.GerenciamentoProdutos;
+import org.levilima.model.Produto;
 import javax.swing.JOptionPane;
 
 public class Loja {

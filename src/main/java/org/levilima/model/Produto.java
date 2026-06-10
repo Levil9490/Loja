@@ -1,4 +1,6 @@
-package org.levilima.loja;
+package org.levilima.model;
+
+import org.levilima.control.GerenciamentoProdutos;
 
 /**
 *
@@ -14,7 +16,7 @@ public class Produto {
     private String categoria;
 	
     public Produto(String nome, String descricao, double preco, String vencimento, int quantidade, String categoria) {
-        this.setCodigo(GerenciamentoProdutos.CODIGO);
+        this.codigo = GerenciamentoProdutos.CODIGO;
         this.setNome(nome);
         this.setDescricao(descricao);
         this.setPreco(preco);

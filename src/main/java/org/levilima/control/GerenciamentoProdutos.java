@@ -1,4 +1,6 @@
-package org.levilima.loja;
+package org.levilima.control;
+
+import org.levilima.model.Produto;
 
 /**
 *
@@ -8,7 +10,7 @@ public class GerenciamentoProdutos {
     private Produto produtos[];
     private int tamanho;
     private int id;
-    static int CODIGO = 200;
+    public static int CODIGO = 200;
     private String carrinho;
     private double total;
 
