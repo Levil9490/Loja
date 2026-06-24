@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
+import org.levilima.control.GerenciamentoProdutos;
+import org.levilima.model.Produto;
 
 /**
  *
@@ -24,8 +26,18 @@ public class TelaAtualiza extends javax.swing.JFrame {
     /**
      * Creates new form TelaAtualiza
      */
-    public TelaAtualiza() {
+    private final int id;
+    
+    public TelaAtualiza(Produto produto) {
         initComponents();
+        
+        this.id = produto.getCodigo();
+        this.txtNome.setText(produto.getNome());
+        this.txtDescricao.setText(produto.getDescricao());
+        this.txtPreco.setText("" + produto.getPreco());
+        this.txtQuantidade.setText("" + produto.getQuantidade());
+        this.txtCategoria.setText(produto.getCategoria());
+        this.txtVencimento.setText(produto.getVencimento());
     }
 
     /**
@@ -68,6 +80,7 @@ public class TelaAtualiza extends javax.swing.JFrame {
 
         btnAtualizar.setForeground(new Color(0, 153, 0));
         btnAtualizar.setText("Salvar");
+        btnAtualizar.addActionListener(this::btnAtualizarActionPerformed);
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,6 +141,19 @@ public class TelaAtualiza extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAtualizarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        String nome = txtNome.getText();
+        String descricao = txtDescricao.getText();
+        Double preco = Double.parseDouble(txtPreco.getText());
+        String vencimento = txtVencimento.getText();
+        int quantidade = Integer.parseInt(txtQuantidade.getText());
+        String categoria = txtCategoria.getText();
+        GerenciamentoProdutos genProd = GerenciamentoProdutos.getInstance();
+        
+        genProd.atualizarProduto(id, nome, preco, quantidade, vencimento, categoria, descricao);
+        dispose();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -150,7 +176,7 @@ public class TelaAtualiza extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaAtualiza().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaAtualiza(null).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

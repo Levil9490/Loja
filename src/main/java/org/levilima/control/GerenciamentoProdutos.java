@@ -12,13 +12,21 @@ public class GerenciamentoProdutos {
     private int tamanho;
     private int id;
     public static int CODIGO = 200;
-    private String carrinho;
+    private static GerenciamentoProdutos instance = null;
+    private LinkedList<String> carrinho;
     private double total;
 
-    public GerenciamentoProdutos() {
+    private GerenciamentoProdutos() {
         this.produtos = new LinkedList<Produto>();
-        this.carrinho = "";
+        this.carrinho = new LinkedList<String>();
         this.total = 0;
+    }
+    
+    public static GerenciamentoProdutos getInstance() {
+        if(instance == null)
+            instance = new GerenciamentoProdutos();
+        
+        return instance;
     }
 
     public void adicionarProduto(Produto produto) {
@@ -64,27 +72,45 @@ public class GerenciamentoProdutos {
         }
     }
 
-    /*
+    
     public void adicionarCarrinho(Produto produto, int quantidade) {
-        this.carrinho += "\nCodigo: " + produto.getCodigo() + "\tNome: " + produto.getNome() + "\tQuantidade: " + quantidade + "\tPreço: " + (produto.getPreco() * quantidade) + "\n";
+        String conteudo = "\nCódigo: " + produto.getNome()
+                + "\nNome: " + produto.getNome()
+                + "\nQuantidade: " + produto.getQuantidade()
+                + "\nPreco: " + produto.getPreco();
+        
+        this.carrinho.add(conteudo);
         this.total += (produto.getPreco() * quantidade);
         produto.setQuantidade(produto.getQuantidade() - quantidade);
     }
 
+    
     public String verCarrinho() {
-        return this.carrinho + "Total: " + this.total + "\n";
+        String conteudo = "";
+        
+        for(String compra : carrinho)
+            conteudo += compra;
+        
+        return conteudo + "\nTotal: " + total + "\n";
     }
 
     public String verificarEstoque() {
         String conteudo = "";
 
-        if(this.id == 0) return "Nenhum produto no estoque";
+        if(produtos.isEmpty())
+            return "Nenhum produto no estoque";
 
-        for(int i = 0; i < this.id; ++i)
-                if(this.produtos[i].getQuantidade() == 0)
-                        conteudo += "Código: " + this.produtos[i].getCodigo() + " Nome: " + this.produtos[i].getNome() + " Descrição: " + this.produtos[i].getDescricao() + " Quantidade: " + this.produtos[i].getQuantidade() + " Preço: " + this.produtos[i].getPreco() + "\n";
+        for(Produto produto : produtos)
+            if(produto.getQuantidade() == 0)
+                conteudo += "Código: " +
+                        produto.getCodigo() +
+                        " Nome: " + produto.getNome() +
+                        " Descrição: " + produto.getDescricao() +
+                        " Quantidade: " + produto.getQuantidade() +
+                        " Preço: " + produto.getPreco() + "\n";
 
-        if(conteudo.equals("")) return "Os produtos possuem itens";
+        if(conteudo.equals(""))
+            return "O estoque possue itens";
 
         return conteudo;
     }
@@ -92,17 +118,23 @@ public class GerenciamentoProdutos {
     public String verificarEstoque(int margem) {
         String conteudo = "";
 
-        if(this.id == 0) return "Nenhum produto no estoque";
+        if(carrinho.isEmpty())
+            return "Nenhum produto no estoque";
 
-        for(int i = 0; i < this.id; ++i)
-            if(this.produtos[i].getQuantidade() <= margem)
-                    conteudo += "Código: " + this.produtos[i].getCodigo() + " Nome: " + this.produtos[i].getNome() + " Descrição: " + this.produtos[i].getDescricao() + " Quantidade: " + this.produtos[i].getQuantidade() + " Preço: " + this.produtos[i].getPreco() + "\n";
+        for(Produto produto : produtos)
+            if(produto.getQuantidade() <= margem)
+                conteudo += "Código: " + produto.getCodigo() +
+                        " Nome: " + produto.getNome() +
+                        " Descrição: " + produto.getDescricao() +
+                        " Quantidade: " + produto.getQuantidade() +
+                        " Preço: " + produto.getPreco() + "\n";
 
         if(conteudo.equals("")) return "Os produtos possuem itens";
 
         return conteudo;
     }
 
+    /*
     public String finalizarCompra() {
         String conteudo = this.carrinho + "\nTotal" + this.total + "\nCompra concluída com sucesso!\n";
         this.carrinho = "";

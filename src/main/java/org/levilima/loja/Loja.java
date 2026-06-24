@@ -17,9 +17,9 @@ public class Loja {
         int busca;
         Produto produto;
 
-        GerenciamentoProdutos genProd = new GerenciamentoProdutos(5);
+        GerenciamentoProdutos genProd = GerenciamentoProdutos.getInstance();
 
-        while(controle) {
+        /*while(controle) {
             int opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "Sistema de gerenciamento de produtos\n" +
                 "Escolha uma opcao:\n" +
                 "1 - Inserir produto\n" +
@@ -116,6 +116,6 @@ public class Loja {
                 case 9:
                     JOptionPane.showMessageDialog(null, genProd.finalizarCompra());
             }
-        }
+        }*/
     }
 }

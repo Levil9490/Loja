@@ -127,10 +127,12 @@ public class AdicionaProduto extends javax.swing.JFrame {
         String vencimento = txtVencimento.getText();
         int quantidade = Integer.parseInt(txtQuantidade.getText());
         String categoria = txtCategoria.getText();
-        GerenciamentoProdutos genPro = new GerenciamentoProdutos();
+        GerenciamentoProdutos genPro = GerenciamentoProdutos.getInstance();
         Produto produto = new Produto(nome, descricao, preco, vencimento, quantidade, categoria);
         
         genPro.adicionarProduto(produto);
+        System.out.println(genPro.listarProdutos());
+        dispose();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     public static void main(String args[]) {
