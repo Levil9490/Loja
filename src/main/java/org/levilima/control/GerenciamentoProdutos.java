@@ -34,12 +34,24 @@ public class GerenciamentoProdutos {
     }
 
     public String listarProdutos() {
-        String conteudo = "";
+        StringBuilder conteudo = new StringBuilder();
 
-        for(Produto produto : this.produtos)
-            conteudo += produto.exibirProduto() + "\n\n";
+        for(Produto produto : produtos) {
+            String infoProduto = String.format(
+                    "Código: %s Nome: %s Descricao: %s Preço: %s Vencimento: %s Quantidade: %s Categoria: %s\n",
+                    produto.getCodigo(),
+                    produto.getNome(),
+                    produto.getDescricao(),
+                    produto.getPreco(),
+                    produto.getVencimento(),
+                    produto.getQuantidade(),
+                    produto.getCategoria()
+            );
+            
+            conteudo.append(infoProduto);
+        }
 
-        return conteudo;
+        return conteudo.toString();
     }
 
     public Produto buscarProduto(int codigo) {
