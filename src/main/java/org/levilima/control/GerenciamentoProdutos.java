@@ -37,16 +37,9 @@ public class GerenciamentoProdutos {
         StringBuilder conteudo = new StringBuilder();
 
         for(Produto produto : produtos) {
-            String infoProduto = String.format(
-                    "Código: %s Nome: %s Descricao: %s Preço: %s Vencimento: %s Quantidade: %s Categoria: %s\n",
-                    produto.getCodigo(),
-                    produto.getNome(),
-                    produto.getDescricao(),
-                    produto.getPreco(),
-                    produto.getVencimento(),
-                    produto.getQuantidade(),
-                    produto.getCategoria()
-            );
+            String infoProduto = """
+                                Código: %s Nome: %s Descrição: %s Preço: %s Vencimento: %s Quantidade: %s Categoria: %s
+                                """.formatted(produto.getCodigo(), produto.getNome(), produto.getDescricao(), produto.getPreco(), produto.getVencimento(), produto.getQuantidade(), produto.getCategoria());
             
             conteudo.append(infoProduto);
         }
