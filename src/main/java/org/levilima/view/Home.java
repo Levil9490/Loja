@@ -33,6 +33,7 @@ public class Home extends javax.swing.JFrame {
         btnAtualizarProduto = new JButton();
         btnListarProdutos = new JButton();
         btnExcluirProduto = new JButton();
+        btnCarrinho = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +52,9 @@ public class Home extends javax.swing.JFrame {
         btnExcluirProduto.setText("Excluir Produto");
         btnExcluirProduto.addActionListener(this::btnExcluirProdutoActionPerformed);
 
+        btnCarrinho.setText("Carrinho");
+        btnCarrinho.addActionListener(this::btnCarrinhoActionPerformed);
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -63,7 +67,8 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnListarProdutos, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(btnBuscarProduto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnBuscarProduto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCarrinho, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -77,7 +82,9 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnAtualizarProduto)
                     .addComponent(btnListarProdutos))
                 .addGap(18, 18, 18)
-                .addComponent(btnExcluirProduto)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExcluirProduto)
+                    .addComponent(btnCarrinho))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
 
@@ -136,6 +143,25 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 
+    private void btnCarrinhoActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnCarrinhoActionPerformed
+        int busca = Integer.parseInt(JOptionPane.showInputDialog("Digite o código desejado:"));
+        GerenciamentoProdutos genProd = GerenciamentoProdutos.getInstance();
+        Produto produto = genProd.buscarProduto(busca);
+        
+        if(produto == null) {
+            JOptionPane.showMessageDialog(this, "Produto não encontrado!");
+        } else {
+            int qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade desejada:"));
+            
+            if(qtd <= produto.getQuantidade()) {
+                genProd.adicionarCarrinho(produto, qtd);
+                JOptionPane.showMessageDialog(this, "Produto adicionado ao carrinho.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Quantidade indisponível.");
+            }
+        }
+    }//GEN-LAST:event_btnCarrinhoActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -162,6 +188,7 @@ public class Home extends javax.swing.JFrame {
     private JButton btnAdicionarProduto;
     private JButton btnAtualizarProduto;
     private JButton btnBuscarProduto;
+    private JButton btnCarrinho;
     private JButton btnExcluirProduto;
     private JButton btnListarProdutos;
     // End of variables declaration//GEN-END:variables

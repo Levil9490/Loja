@@ -34,6 +34,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnListarProdutos" pref="140" max="32767" attributes="0"/>
                   <Component id="btnBuscarProduto" max="32767" attributes="0"/>
+                  <Component id="btnCarrinho" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="67" max="32767" attributes="0"/>
           </Group>
@@ -53,7 +54,10 @@
                   <Component id="btnListarProdutos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnExcluirProduto" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnExcluirProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCarrinho" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="150" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -98,6 +102,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirProdutoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCarrinho">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Carrinho"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCarrinhoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

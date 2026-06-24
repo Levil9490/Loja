@@ -129,17 +129,24 @@ public class GerenciamentoProdutos {
                         " Quantidade: " + produto.getQuantidade() +
                         " Preço: " + produto.getPreco() + "\n";
 
-        if(conteudo.equals("")) return "Os produtos possuem itens";
+        if(conteudo.equals(""))
+            return "Os produtos possuem itens";
 
         return conteudo;
     }
 
-    /*
     public String finalizarCompra() {
-        String conteudo = this.carrinho + "\nTotal" + this.total + "\nCompra concluída com sucesso!\n";
-        this.carrinho = "";
-        this.total = 0;
+        String conteudo = "";
+        
+        for(String compra : carrinho)
+            conteudo += compra;
+        
+        conteudo += "\nTotal: " + total
+                + "Compra concluída com sucesso!\n";
+        
+        carrinho.clear();
+        total = 0;
+        
         return conteudo;
     }
-    */
 }
